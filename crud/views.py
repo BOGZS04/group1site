@@ -1,8 +1,13 @@
-from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import Genders, Users
 from django.contrib.auth.hashers import make_password
+from django.core.paginator import Paginator
+from django.db.models import Q
+from django.core.exceptions import ValidationError
 
 
 # Create your views here.
@@ -82,56 +87,171 @@ def delete_gender(request, genderId):
         return HttpResponse(f'Error Occurred During Delete Gender: {e}')
 
 def user_list(request):
-   try:
-     userObj = Users.objects.select_related('gender') 
+    try:
+        search_query = request.GET.get('search', '')
+        
+        # Filter users based on the search query across all fields
+        if search_query:
+            userObj = Users.objects.filter(
+                Q(full_name__icontains=search_query) |
+                Q(gender__gender__iexact=search_query) |
+                Q(birth_date__icontains=search_query) |
+                Q(address__icontains=search_query) |
+                Q(contact_number__icontains=search_query) |
+                Q(email__icontains=search_query)
+            ).select_related('gender')
+        else:
+            userObj = Users.objects.select_related('gender')
 
-     data = {
-        'users': userObj
-     } 
+        # Pagination logic
+        paginator = Paginator(userObj, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
 
-     return render(request, 'user/UsersList.html', data)
-   except Exception as e:
-      return HttpResponse(f'Error Occurred During Loading User List: {e}')   
+        # Render page with data
+        data = {
+            'page_obj': page_obj,
+            'search_query': search_query
+        }
+        return render(request, 'user/UsersList.html', data)
+
+    except Exception as e:
+        return HttpResponse(f'Error Occurred During Loading User List: {e}')
 
 def add_user(request):
-   try: 
-      if request.method == 'POST':
-        full_name = request.POST.get('full_name') 
-        gender = request.POST.get('gender')
+    if request.method == 'POST':
+        # Retrieve data from the form
+        full_name = request.POST.get('full_name')
+        gender = request.POST.get('gender')  # Get gender ID from form submission
         birth_date = request.POST.get('birth_date')
         address = request.POST.get('address')
         contact_number = request.POST.get('contact_number')
         email = request.POST.get('email')
         username = request.POST.get('username')
         password = request.POST.get('password')
-        confirmPassword = request.POST.get('confirm_password')
+        confirm_password = request.POST.get('confirm_password')
 
-        if password != confirmPassword:
-           messages.error(request, 'Password and Confirm Password do not match')
-           return redirect('/user/add')
+        # Check if any required fields are empty
+        errors = {}
+        if not full_name:
+            errors['full_name'] = "Full name is required."
+        if not gender:
+            errors['gender'] = "Gender is required."
+        if not birth_date:
+            errors['birth_date'] = "Birth date is required."
+        if not address:
+            errors['address'] = "Address is required."
+        if not contact_number:
+            errors['contact_number'] = "Contact number is required."
+        if not username:
+            errors['username'] = "Username is required."
+        if not password:
+            errors['password'] = "Password is required."
+        if not confirm_password:
+            errors['confirm_password'] = "Confirm password is required."
+        elif password != confirm_password:
+            errors['confirm_password'] = "Passwords do not match."
+        if Users.objects.filter(username=username).exists():
+            errors['username'] = "Username already exists."
 
-        Users.objects.create(
-           full_name=full_name,
-           gender=Genders.objects.get(pk=gender), 
-           birth_date=birth_date,
-           address=address,
-           contact_number=contact_number,
-           email=email,
-           username=username,
-           password=make_password(password) 
-        ).save() 
+        # If there are errors, return the form with errors and retain values
+        if errors:
+            genders = Genders.objects.all()
+            return render(request, 'user/AddUser.html', {
+                'errors': errors,
+                'full_name': full_name,
+                'gender': gender,  # Pass the selected gender ID to the template
+                'birth_date': birth_date,
+                'address': address,
+                'contact_number': contact_number,
+                'email': email,
+                'username': username,
+                'genders': genders,  # Pass genders back to the template
+            })
 
-        messages.success(request, 'User Added Successfully!')
-        return redirect('/user/add')
-        
-      else:
-        genderObj = Genders.objects.all()
+        # Create new user if no errors
+        try:
+            user = Users(
+                full_name=full_name,
+                gender=Genders.objects.get(gender_id=gender),  # Use the gender ID to retrieve the gender object
+                birth_date=birth_date,
+                address=address,
+                contact_number=contact_number,
+                email=email,
+                username=username,
+                password=make_password(password)  # Securely hash the password
+            )
+            user.save()
+            messages.success(request, "User added successfully!")
+            return redirect('user_list')
 
-      data = {
-         'genders': genderObj
-      }
+        except ValidationError as e:
+            return HttpResponse(f"Invalid data: {e}")
+    else:
+        # If not a POST request, just render the empty form
+        genders = Genders.objects.all()
+        return render(request, 'user/AddUser.html', {'genders': genders})
+   
+def edit_user(request, id):
+    try:
+        user_obj = get_object_or_404(Users, user_id=id)  # Fetch the user object by ID
 
-      return render(request, 'user/AddUser.html', data)
-   except Exception as e:
-      return HttpResponse(f'Error Occurred During Add User: {e}')
+        if request.method == 'POST':
+            # Collect form data (excluding password)
+            full_name = request.POST.get('full_name')
+            gender = request.POST.get('gender')
+            birth_date = request.POST.get('birth_date')
+            address = request.POST.get('address')
+            contact_number = request.POST.get('contact_number')
+            email = request.POST.get('email')
+            username = request.POST.get('username')
+
+            # Check if the new username is unique (if the username is changed)
+            if username != user_obj.username and Users.objects.filter(username=username).exists():
+                messages.error(request, "Username already exists. Please choose another one.")
+                genders = Genders.objects.all()  # Fetch genders to display again
+                return render(request, 'user/EditUser.html', {
+                    'user': user_obj,
+                    'genders': genders,
+                    'errors': {'username': 'Username already exists.'}
+                })
+
+            # Update the user object with the new data
+            user_obj.full_name = full_name
+            user_obj.gender = Genders.objects.get(pk=gender)  # Update gender with the selected one
+            user_obj.birth_date = birth_date
+            user_obj.address = address
+            user_obj.contact_number = contact_number
+            user_obj.email = email
+            user_obj.username = username
+
+            # Save the updated user object
+            user_obj.save()
+
+            messages.success(request, 'User updated successfully!')
+            return redirect('/user/list')  # Redirect to the user list page
+
+        else:
+            # If not a POST request, pass the current user data to the template for pre-population
+            genders = Genders.objects.all()  # Get all genders
+            return render(request, 'user/EditUser.html', {
+                'user': user_obj,
+                'genders': genders
+            })
+
+    except Exception as e:
+        # Handle exceptions and show error message
+        return HttpResponse(f'Error occurred while editing user: {e}')
+    
+def delete_user(request, id):
+    user = get_object_or_404(Users, pk=id)
+    
+    if request.method == 'POST':
+        user.delete()
+        messages.success(request, 'User deleted successfully!')
+        return redirect('/user/list')  # Or use `reverse()`
+
+    # If GET, show confirmation page
+    return render(request, 'user/DeleteUser.html', {'user': user})
+
 
