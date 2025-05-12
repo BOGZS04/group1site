@@ -1,6 +1,8 @@
-setTimeout(() => {
-    const successToastMessage = document.getElementById('toast-success')
-    if(successToastMessage) {
-        successToastMessage.style.display = 'none'
-    }
-}, 3000)
+//This script will automatically hide the toast message after 3 seconds
+  setTimeout(() => {
+    const toasts = document.querySelectorAll('[id^="toast-"]');
+    toasts.forEach(toast => {
+      toast.style.display = 'none';
+    });
+  }, 3000);
+

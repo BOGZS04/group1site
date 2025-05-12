@@ -7,29 +7,22 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-100: oklch(93.6% 0.032 17.717);
+    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-700: oklch(50.5% 0.213 27.518);
     --color-green-100: oklch(96.2% 0.044 156.743);
-    --color-green-200: oklch(92.5% 0.084 155.995);
     --color-green-500: oklch(72.3% 0.219 149.579);
     --color-green-600: oklch(62.7% 0.194 149.214);
     --color-green-700: oklch(52.7% 0.154 150.069);
-    --color-green-800: oklch(44.8% 0.119 151.328);
     --color-cyan-950: oklch(30.2% 0.056 229.695);
-    --color-blue-100: oklch(93.2% 0.032 255.585);
-    --color-blue-300: oklch(80.9% 0.105 251.813);
-    --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-600: oklch(54.6% 0.245 262.881);
-    --color-blue-800: oklch(42.4% 0.199 265.638);
-    --color-blue-900: oklch(37.9% 0.146 265.522);
-    --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
-    --color-gray-700: oklch(37.3% 0.034 259.733);
     --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-gray-900: oklch(21% 0.034 264.665);
     --color-black: #000;
@@ -292,6 +285,9 @@
   .flex {
     display: flex;
   }
+  .grid {
+    display: grid;
+  }
   .hidden {
     display: none;
   }
@@ -365,6 +361,9 @@
   .list-none {
     list-style-type: none;
   }
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
   .items-center {
     align-items: center;
   }
@@ -379,6 +378,9 @@
   }
   .justify-start {
     justify-content: flex-start;
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
   }
   .space-y-2 {
     :where(& > :not(:last-child)) {
@@ -461,6 +463,9 @@
   }
   .bg-green-600 {
     background-color: var(--color-green-600);
+  }
+  .bg-red-100 {
+    background-color: var(--color-red-100);
   }
   .bg-red-600 {
     background-color: var(--color-red-600);
@@ -555,6 +560,9 @@
   }
   .text-green-500 {
     color: var(--color-green-500);
+  }
+  .text-red-500 {
+    color: var(--color-red-500);
   }
   .text-white {
     color: var(--color-white);
@@ -663,6 +671,11 @@
     @media (width >= 40rem) {
       --tw-translate-x: calc(var(--spacing) * 0);
       translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+  }
+  .sm\:grid-cols-2 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   .sm\:text-2xl {

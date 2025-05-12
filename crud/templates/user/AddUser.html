@@ -1,0 +1,100 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Add User Page{% endblock %}
+
+{% block content %}
+{% include "include/sidebar.html" %}
+{% include "include/toastmessage.html" %}
+
+<div class="flex pt-16">
+
+  <main class="flex-1 p-4 sm:ml-64">
+    <form action="/user/add" method="post">
+      {% csrf_token %}
+      <!-- Start of Grid Layout -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <!-- Full Name -->
+        <div class="mx-auto w-full mb-2">
+          <label for="full_name" class="block text-sm font-medium mb-2">Full Name</label>
+          <input type="text" id="full_name" name="full_name"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required />
+        </div>
+
+        <!-- Gender -->
+        <div class="mx-auto w-full mb-2">
+          <label for="gender" class="block text-sm font-medium mb-2">Gender</label>
+          <select id="gender" name="gender"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required>
+            <option value="">Select Gender</option>
+            {% for gender in genders %}
+              <option value="{{ gender.gender_id }}">{{ gender.gender }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Birth Date -->
+        <div class="mx-auto w-full mb-2">
+          <label for="birth_date" class="block text-sm font-medium mb-2">Birth Date</label>
+          <input type="date" id="birth_date" name="birth_date"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required />
+        </div>
+
+        <!-- Address -->
+        <div class="mx-auto w-full mb-2">
+          <label for="address" class="block text-sm font-medium mb-2">Address</label>
+          <input type="text" id="address" name="address"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required />
+        </div>
+
+        <!-- Contact Number -->
+        <div class="mx-auto w-full mb-2">
+          <label for="contact_number" class="block text-sm font-medium mb-2">Contact Number</label>
+          <input type="text" id="contact_number" name="contact_number"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required />
+        </div>
+
+        <!-- Email -->
+        <div class="mx-auto w-full mb-2">
+          <label for="email" class="block text-sm font-medium mb-2">Email</label>
+          <input type="email" id="email" name="email"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required />
+        </div>
+
+        <!-- Username -->
+        <div class="mx-auto w-full mb-2">
+          <label for="username" class="block text-sm font-medium mb-2">Username</label>
+          <input type="text" id="username" name="username"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required />
+        </div>
+
+        <!-- Password -->
+        <div class="mx-auto w-full mb-2">
+          <label for="password" class="block text-sm font-medium mb-2">Password</label>
+          <input type="password" id="password" name="password"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mx-auto w-full mb-2">
+          <label for="confirm_password" class="block text-sm font-medium mb-2">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password"
+            class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600" required />
+        </div>
+
+      </div> <!-- End of Grid Layout -->
+
+      <!-- Submit Button -->
+      <div class="mx-auto w-full flex justify-end mt-4">
+        <button type="submit"
+          class="bg-green-600 hover:bg-green-700 text-sm font-medium text-white px-3 py-2.5 rounded-sm shadow-sm cursor-pointer">
+          Save User
+        </button>
+      </div>
+    </form>
+  </main>
+</div>
+
+{% endblock %}
+
+

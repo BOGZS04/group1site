@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Genders
+from .models import Genders, Users
+from django.contrib.auth.hashers import make_password
+
 
 # Create your views here.
 
@@ -78,4 +80,58 @@ def delete_gender(request, genderId):
         return render(request, 'gender/DeleteGender.html', data)
     except Exception as e:
         return HttpResponse(f'Error Occurred During Delete Gender: {e}')
+
+def user_list(request):
+   try:
+     userObj = Users.objects.select_related('gender') 
+
+     data = {
+        'users': userObj
+     } 
+
+     return render(request, 'user/UsersList.html', data)
+   except Exception as e:
+      return HttpResponse(f'Error Occurred During Loading User List: {e}')   
+
+def add_user(request):
+   try: 
+      if request.method == 'POST':
+        full_name = request.POST.get('full_name') 
+        gender = request.POST.get('gender')
+        birth_date = request.POST.get('birth_date')
+        address = request.POST.get('address')
+        contact_number = request.POST.get('contact_number')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        confirmPassword = request.POST.get('confirm_password')
+
+        if password != confirmPassword:
+           messages.error(request, 'Password and Confirm Password do not match')
+           return redirect('/user/add')
+
+        Users.objects.create(
+           full_name=full_name,
+           gender=Genders.objects.get(pk=gender), 
+           birth_date=birth_date,
+           address=address,
+           contact_number=contact_number,
+           email=email,
+           username=username,
+           password=make_password(password) 
+        ).save() 
+
+        messages.success(request, 'User Added Successfully!')
+        return redirect('/user/add')
+        
+      else:
+        genderObj = Genders.objects.all()
+
+      data = {
+         'genders': genderObj
+      }
+
+      return render(request, 'user/AddUser.html', data)
+   except Exception as e:
+      return HttpResponse(f'Error Occurred During Add User: {e}')
 
