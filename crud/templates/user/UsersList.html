@@ -8,16 +8,17 @@ Users List
     {% include "include/sidebar.html" %}
     {% include "include/toastmessage.html" %}
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <div class="p-2 sm:ml-64 mt-16 md:mt-14">
-        <form method="get" action="{% url 'user_list' %}">
+        <form method="get" action="{% url 'user_list' %}" id="search-form">
             <input type="text" id="search" name="search" value="{{ search_query }}" placeholder="Search users..." class="mb-4 p-2 rounded border border-gray-300">
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Search</button>
             {% if search_query %}
                 <a href="{% url 'user_list' %}" class="ml-2 bg-gray-300 text-black px-4 py-2 rounded">Clear</a>
             {% endif %}
         </form>
 
-        <div id="user-table-container" class="relative overflow-x-auto rounded-sm shadow-sm">
+        <div id="user-table-container" class="relative overflow-x-auto w-full table-auto rounded-sm shadow-sm">
             <table class="w-full">
                 <thead class="text-xs text-left text-white bg-cyan-950">
                     <tr>
@@ -93,4 +94,21 @@ Users List
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            var searchQuery = this.value;
+
+            fetch("{% url 'user_list' %}?search=" + searchQuery, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('user-table-body').innerHTML = data.html;
+            });
+        });
+    </script>
 {% endblock %}

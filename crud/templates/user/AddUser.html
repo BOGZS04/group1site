@@ -31,9 +31,9 @@
     class="bg-white px-3 py-2.5 border border-gray-300 text-black block text-sm font-medium rounded-sm w-full focus:outline-none focus:ring-blue-600 focus:border-blue-600">
     <option value="">Select Gender</option>
     {% for gender_item in genders %}
-      <option value="{{ gender_item.gender_id }}" {% if gender_item.gender_id|stringformat:"d" == gender|stringformat:"d" %}selected{% endif %}>
-        {{ gender_item.gender }}
-      </option>
+    <option value="{{ gender_item.gender_id }}" {% if gender_item.gender_id|stringformat:"s" == gender %}selected{% endif %}>
+      {{ gender_item.gender }}
+    </option>
     {% endfor %}
   </select>
   {% if errors.gender %}

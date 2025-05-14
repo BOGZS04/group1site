@@ -8,10 +8,12 @@ from django.contrib.auth.hashers import make_password
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.core.exceptions import ValidationError
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
+@login_required
 def gender_list(request):
    try:
       genders = Genders.objects.all()
@@ -24,6 +26,7 @@ def gender_list(request):
    except Exception as e:
      return HttpResponse(f'Error Occured During Loading Gender List: {e}')
 
+@login_required
 def add_gender(request):
     try:
       if request.method == 'POST':
@@ -37,6 +40,7 @@ def add_gender(request):
     except Exception as e: 
         return HttpResponse(f'Error Occurred During Add Gender: {e}')  
 
+@login_required
 def edit_gender(request, genderId):
    try:
       if request.method == 'POST':
@@ -65,7 +69,8 @@ def edit_gender(request, genderId):
    
    except Exception as e:
       return HttpResponse(f'Error Occurred During Edit Gender: {e}')
-   
+
+@login_required   
 def delete_gender(request, genderId):
     try:
         if request.method == 'POST':
@@ -86,6 +91,9 @@ def delete_gender(request, genderId):
     except Exception as e:
         return HttpResponse(f'Error Occurred During Delete Gender: {e}')
 
+from django.http import JsonResponse
+
+@login_required
 def user_list(request):
     try:
         search_query = request.GET.get('search', '')
@@ -108,6 +116,13 @@ def user_list(request):
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
+        # Render the table body as HTML
+        table_html = render_to_string('user/user_table_body.html', {'page_obj': page_obj})
+
+        # Check if request is AJAX
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'html': table_html})
+
         # Render page with data
         data = {
             'page_obj': page_obj,
@@ -118,6 +133,7 @@ def user_list(request):
     except Exception as e:
         return HttpResponse(f'Error Occurred During Loading User List: {e}')
 
+@login_required
 def add_user(request):
     if request.method == 'POST':
         # Retrieve data from the form
@@ -191,58 +207,75 @@ def add_user(request):
         # If not a POST request, just render the empty form
         genders = Genders.objects.all()
         return render(request, 'user/AddUser.html', {'genders': genders})
-   
+
+@login_required   
 def edit_user(request, id):
-    try:
-        user_obj = get_object_or_404(Users, user_id=id)  # Fetch the user object by ID
+    user_obj = get_object_or_404(Users, user_id=id)
 
-        if request.method == 'POST':
-            # Collect form data (excluding password)
-            full_name = request.POST.get('full_name')
-            gender = request.POST.get('gender')
-            birth_date = request.POST.get('birth_date')
-            address = request.POST.get('address')
-            contact_number = request.POST.get('contact_number')
-            email = request.POST.get('email')
-            username = request.POST.get('username')
+    if request.method == 'POST':
+        # Retrieve data from the form
+        full_name = request.POST.get('full_name')
+        gender = request.POST.get('gender')
+        birth_date = request.POST.get('birth_date', user_obj.birth_date)  # Default to user's birth_date if not in POST
+        address = request.POST.get('address')
+        contact_number = request.POST.get('contact_number')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
 
-            # Check if the new username is unique (if the username is changed)
-            if username != user_obj.username and Users.objects.filter(username=username).exists():
-                messages.error(request, "Username already exists. Please choose another one.")
-                genders = Genders.objects.all()  # Fetch genders to display again
-                return render(request, 'user/EditUser.html', {
-                    'user': user_obj,
-                    'genders': genders,
-                    'errors': {'username': 'Username already exists.'}
-                })
+        # Manual validation
+        errors = {}
+        if not full_name:
+            errors['full_name'] = "Full name is required."
+        if not gender:
+            errors['gender'] = "Gender is required."
+        if not birth_date:
+            errors['birth_date'] = "Birth date is required."
+        if not address:
+            errors['address'] = "Address is required."
+        if not contact_number:
+            errors['contact_number'] = "Contact number is required."
+        if not username:
+            errors['username'] = "Username is required."
+        elif username != user_obj.username and Users.objects.filter(username=username).exists():
+            errors['username'] = "Username already exists."
 
-            # Update the user object with the new data
-            user_obj.full_name = full_name
-            user_obj.gender = Genders.objects.get(pk=gender)  # Update gender with the selected one
-            user_obj.birth_date = birth_date
-            user_obj.address = address
-            user_obj.contact_number = contact_number
-            user_obj.email = email
-            user_obj.username = username
-
-            # Save the updated user object
-            user_obj.save()
-
-            messages.success(request, 'User updated successfully!')
-            return redirect('/user/list')  # Redirect to the user list page
-
-        else:
-            # If not a POST request, pass the current user data to the template for pre-population
-            genders = Genders.objects.all()  # Get all genders
+        # If there are errors, return to form with current values
+        if errors:
+            genders = Genders.objects.all()
             return render(request, 'user/EditUser.html', {
                 'user': user_obj,
-                'genders': genders
+                'genders': genders,
+                'errors': errors,
+                'full_name': full_name,
+                'gender_id': gender,
+                'birth_date': birth_date,  # Ensure birth_date is passed back
+                'address': address,
+                'contact_number': contact_number,
+                'email': email,
+                'username': username,
             })
 
-    except Exception as e:
-        # Handle exceptions and show error message
-        return HttpResponse(f'Error occurred while editing user: {e}')
-    
+        # Update user if no errors
+        user_obj.full_name = full_name
+        user_obj.gender = Genders.objects.get(pk=gender)
+        user_obj.birth_date = birth_date
+        user_obj.address = address
+        user_obj.contact_number = contact_number
+        user_obj.email = email
+        user_obj.username = username
+        user_obj.save()
+
+        messages.success(request, "User updated successfully!")
+        return redirect('/user/list')
+
+    else:
+        genders = Genders.objects.all()
+        return render(request, 'user/EditUser.html', {
+            'user': user_obj,
+            'genders': genders
+        })
+
+@login_required    
 def delete_user(request, id):
     user = get_object_or_404(Users, pk=id)
     
