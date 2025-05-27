@@ -1,0 +1,1291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OreganKnow Medical Healthcare</title>
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <!-- icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <!-- flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- swiperjs -->
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet"/>
+</head>
+
+<!-- Header and Navbar -->
+<section class="bg-gray-50">
+    <header class="bg-white shadow-sm relative z-40">
+     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+       <img alt="Insolve logo" class="mr-2" src="/assets/logo-landing.png"/>
+       <div>
+        <h1 class="text-2xl font-bold text-gray-800">
+         OreganKnow
+        </h1>
+        <p class="text-sm text-gray-500">
+         Medical Healthcare
+        </p>
+       </div>
+      </div>
+      <div class="hidden md:flex items-center space-x-6">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-map-marker-alt text-teal-500">
+        </i>
+        <span class="text-gray-600">
+        Brgy. Baybay Roxas City, Capiz 5800
+        </span>
+       </div>
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-phone-alt text-teal-500">
+        </i>
+        <span class="text-gray-600">
+         (+487) 384 9452
+        </span>
+       </div>
+       <a href="member.html" class="border border-teal-500 text-teal-500 px-4 py-2 rounded-full hover:bg-teal-500 hover:text-white transition">
+        LOG OUT
+    </a>
+      </div>
+      <div class="md:hidden">
+       <button class="text-gray-600 focus:outline-none" id="menu-btn">
+        <i class="fas fa-bars text-2xl">
+        </i>
+       </button>
+      </div>
+     </div>
+    </header>
+    <nav class="bg-white shadow-lg sticky-nav">
+     <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+      <ul class="hidden md:flex space-x-6 text-gray-600">
+       <li>
+        <a class="hover:text-teal-500" href="#home">
+         Home
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#about">
+         About
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#services">
+         Services
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#booking">
+         Booking
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#team">
+         Team
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#faqs">
+         Faqs
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#department">
+         Department
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#blogs">
+         Blogs
+        </a>
+       </li>
+      </ul>
+      <div class="hidden md:flex items-center space-x-2">
+       <i class="fas fa-search text-gray-600">
+       </i>
+       <input class="border-b border-gray-300 focus:outline-none focus:border-teal-500" placeholder="Search.." type="text"/>
+      </div>
+     </div>
+     <div class="md:hidden hidden" id="mobile-menu">
+      <ul class="flex flex-col space-y-4 p-4 text-gray-600">
+       <li>
+        <a class="hover:text-teal-500" href="#home">
+         Home
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#about">
+         About
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#services">
+         Services
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#booking">
+         Booking
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#team">
+         Team
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#faqs">
+         Faqs
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-500" href="#">
+         Department
+        </a>
+       </li>
+       <li class="flex items-center space-x-2">
+        <i class="fas fa-search text-gray-600">
+        </i>
+        <input class="border-b border-gray-300 focus:outline-none focus:border-teal-500" placeholder="Search.." type="text"/>
+       </li>
+      </ul>
+     </div>
+    </nav>
+</section>    
+
+   <!-- Main Content -->
+<section id="home" class="bg-gray-100 py-16">
+    <div class="container mx-auto flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 text-center md:text-left md:ml-40"> <!-- Added md:ml-10 for left margin on medium screens -->
+            <div class="inline-block bg-white shadow-md rounded-full px-4 py-2 mb-4">
+                <i class="fas fa-heart text-teal-500 mr-2"></i>
+                <span class="text-gray-600">LIVE YOUR LIFE</span>
+            </div>
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                We Care About Your Health
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Managing your health has never been easier with our comprehensive medical healthcare appointment system. Our platform is designed to provide you with seamless access to expert care, helping you schedule appointments at your convenience, track your medical history, and stay connected with your healthcare providers. Your well-being is our priority, and we are here to support you every step of the way.
+            </p>
+            <button class="bg-teal-500 text-white px-6 py-3 rounded-full hover:bg-teal-600 transition">
+                CONTACT US
+            </button>
+        </div>
+        <div class="md:w-1/2 mt-8 md:mt-0 md:ml-16"> <!-- Added md:mr-10 for right margin on medium screens -->
+            <img alt="Doctor holding a clipboard and smiling" class="rounded-lg shadow-2xl" src="/assets/heroimg.png"/>
+        </div>
+    </div>
+</section>
+
+    <!-- Statistics Section -->
+    <section id="about" class="bg-white py-12">
+        <div class="container mx-auto px-4 flex justify-around text-center">
+            <div>
+                <h2 class="text-4xl font-bold text-teal-400">+5120</h2>
+                <p class="text-gray-600">Happy Patients</p>
+            </div>
+            <div>
+                <h2 class="text-4xl font-bold text-teal-400">+26</h2>
+                <p class="text-gray-600">Total Branches</p>
+            </div>
+            <div>
+                <h2 class="text-4xl font-bold text-teal-400">+53</h2>
+                <p class="text-gray-600">Senior Doctors</p>
+            </div>
+            <div>
+                <h2 class="text-4xl font-bold text-teal-400">+10</h2>
+                <p class="text-gray-600">Years Experience</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="bg-teal-500 py-20 relative">
+        <div class="container mx-auto px-4 text-center text-white">
+            <h2 class="text-3xl font-bold">Our Best Services For Your Solution</h2>
+            <p class="mt-4">
+                We are dedicated to offering top-tier services tailored to meet your unique needs. From personalized consultations to advanced medical treatments, our team is committed to delivering solutions that prioritize your health and well-being. Experience the highest standard of care with services designed to ensure your comfort, convenience, and satisfaction.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Cards -->
+    <section class="bg-white py-12 relative">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 -mt-24">
+            <div class="bg-white shadow-md rounded-lg p-6 text-center service-card">
+                <i class="fas fa-user-md text-teal-400 text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold">General Practitioners</h3>
+                <p class="text-gray-600 mt-2">Our skilled general practitioners are here to provide comprehensive care for all your primary healthcare needs. </p>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6 text-center service-card">
+                <i class="fas fa-baby text-teal-400 text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold">Pregnancy Support</h3>
+                <p class="text-gray-600 mt-2">We offer compassionate and comprehensive pregnancy support services to guide you through every stage of your journey. </p>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6 text-center service-card">
+                <i class="fas fa-utensils text-teal-400 text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold">Nutritional Support</h3>
+                <p class="text-gray-600 mt-2">Achieve your health goals with personalized nutritional support for managing conditions, weight, or a healthier lifestyle.</p>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6 text-center service-card">
+                <i class="fas fa-pills text-teal-400 text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold">Pharmaceutical care</h3>
+                <p class="text-gray-600 mt-2">Our pharmaceutical care services are designed to ensure safe and effective medication management. </p>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Appointments Section -->
+    <section id="booking" class="bg-white flex items-center justify-center h-[90vh]">
+        <div class="w-full max-w-2xl p-6">
+            <h1 class="text-3xl font-bold text-center mb-6">Book Appointment or call: <span class="text-teal-500">(+487) 384 9452</span></h1>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <select class="w-full p-3 border rounded-md">
+                            <option>Select Department</option>
+                            <option>Laboratory Analysis</option>
+                            <option>Cardiology Clinic</option>
+                            <option>Gynecology Clinic</option>
+                            <option>Pathology Clinic</option>
+                            <option>Pediatrics Clinic</option>
+                            <option>Neurology Clinic</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="w-full p-3 border rounded-md">
+                            <option>Select Doctor</option>
+                            <option>Doctor Michael Smith | Neurologist</option>
+                            <option>Doctor Isabella Davies | Gynecologist</option>
+                            <option>Doctor Emily Johnson | Pediatrician</option>
+                            <option>Doctor William Brown | Cardiologist</option>
+                            <option>Doctor Zachary Brown | Pathologist</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Full Name" class="w-full p-3 border rounded-md">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Phone Number" class="w-full p-3 border rounded-md">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Age" class="w-full p-3 border rounded-md">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Symptoms" class="w-full p-3 border rounded-md">
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="date-picker" placeholder="dd/mm/2018" class="w-full p-3 border rounded-md">
+                        <i class="fas fa-calendar-alt absolute right-3 top-3 text-gray-400 cursor-pointer" onclick="document.getElementById('date-picker')._flatpickr.open()"></i>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="time-picker" placeholder="--:-- --" class="w-full p-3 border rounded-md">
+                        <i class="fas fa-clock absolute right-3 top-3 text-gray-400 cursor-pointer" onclick="document.getElementById('time-picker')._flatpickr.open()"></i>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center">
+                    <button id="bookButton" type="button" class="bg-teal-500 text-white py-3 px-6 rounded-full">BOOK AN APPOINTMENT</button>  
+                </div>
+                
+                <!-- Popup Modal -->
+                <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                        <span class="close cursor-pointer text-xl float-right" id="closePopup">&times;</span>
+                        <p class="mt-4">You have successfully booked an appointment!</p>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section> 
+
+    
+    <!-- Testimonials -->
+      <section id="testimonials" class="bg-white">
+        <div class="flex justify-center items-center h-[65vh] bg-gray-100">
+        <div class="testimonial-container w-full max-w-5xl p-8 bg-[#e6f1f3] rounded-lg shadow-lg">
+         <div class="swiper-container reviews-swiper">
+          <div class="swiper-wrapper">
+           <!-- Testimonial 1 -->
+           <div class="swiper-slide flex flex-col md:flex-row items-center">
+            <div class="flex flex-wrap justify-center md:justify-start md:w-1/2 space-x-4 space-y-4 md:space-y-0">
+             <img alt="Person 1" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer1.png"/>
+             <img alt="Person 2" class="w-32 h-32 rounded-full border-4 border-white" src="/assets/customer2.png"/>
+             <img alt="Person 3" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer3.png"/>
+             <img alt="Person 4" class="w-24 h-24 rounded-full border-4 border-white" src="/assets/customer4.png"/>
+             <img alt="Person 5" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer5.png"/>
+            </div>
+            <div class="md:w-1/2 mt-8 md:mt-0 md:ml-8 text-center md:text-left">
+             <p class="text-[#5ab0b5] text-2xl">
+              <i class="fas fa-quote-left">
+              </i>
+             </p>
+             <p class="text-gray-600 text-lg mt-2">
+                "The care I received was exceptional! The team was attentive, professional, and truly made me feel value"             </p>
+             <p class="text-gray-800 font-bold mt-4">
+              James Rodrigo
+             </p>
+             <p class="text-[#5ab0b5]">
+              CUSTOMER
+             </p>
+            </div>
+           </div>
+           <!-- Testimonial 2 -->
+           <div class="swiper-slide flex flex-col md:flex-row items-center">
+            <div class="flex flex-wrap justify-center md:justify-start md:w-1/2 space-x-4 space-y-4 md:space-y-0">
+             <img alt="Person 6" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer1.png"/>
+             <img alt="Person 7" class="w-32 h-32 rounded-full border-4 border-white" src="/assets/customer2.png"/>
+             <img alt="Person 8" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer3.png"/>
+             <img alt="Person 9" class="w-24 h-24 rounded-full border-4 border-white" src="/assets/customer4.png"/>
+             <img alt="Person 10" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer5.png"/>
+            </div>
+            <div class="md:w-1/2 mt-8 md:mt-0 md:ml-8 text-center md:text-left">
+             <p class="text-[#5ab0b5] text-2xl">
+              <i class="fas fa-quote-left">
+              </i>
+             </p>
+             <p class="text-gray-600 text-lg mt-2">
+                "Scheduling my appointment was so easy, and the staff went above and beyond to address all my concerns."
+             </p>
+             <p class="text-gray-800 font-bold mt-4">
+              Anna Smith
+             </p>
+             <p class="text-[#5ab0b5]">
+              CUSTOMER
+             </p>
+            </div>
+           </div>
+           <!-- Testimonial 3 -->
+           <div class="swiper-slide flex flex-col md:flex-row items-center">
+            <div class="flex flex-wrap justify-center md:justify-start md:w-1/2 space-x-4 space-y-4 md:space-y-0">
+             <img alt="Person 11" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer1.png"/>
+             <img alt="Person 12" class="w-32 h-32 rounded-full border-4 border-white" src="/assets/customer2.png"/>
+             <img alt="Person 13" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer3.png"/>
+             <img alt="Person 14" class="w-24 h-24 rounded-full border-4 border-white" src="/assets/customer4.png"/>
+             <img alt="Person 15" class="w-20 h-20 rounded-full border-4 border-white" src="/assets/customer5.png"/>
+            </div>
+            <div class="md:w-1/2 mt-8 md:mt-0 md:ml-8 text-center md:text-left">
+             <p class="text-[#5ab0b5] text-2xl">
+              <i class="fas fa-quote-left">
+              </i>
+             </p>
+             <p class="text-gray-600 text-lg mt-2">
+                "I’ve never felt more confident in my healthcare. Their personalized approach made all the difference!"
+             </p>
+             <p class="text-gray-800 font-bold mt-4">
+              Michael Johnson
+             </p>
+             <p class="text-[#5ab0b5]">
+              CUSTOMER
+             </p>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <style>
+        .testimonial-container {
+                 overflow: hidden;
+                 position: relative;
+             }
+             .swiper-slide {
+                 display: flex;
+                 flex-direction: column;
+                 align-items: center;
+                 width: 100%;
+                 
+             }
+             @media (min-width: 768px) {
+                 .swiper-slide {
+                     flex-direction: row;
+                 }
+             }
+       </style>
+      </section>
+
+      <!-- Our Team -->
+      <section id="team" class="bg-gray-50">
+        <div class="container mx-auto py-12">
+         <h1 class="text-4xl font-bold text-center mb-12">
+          Our Team
+         </h1>
+         <div class="swiper-container team-swiper">
+          <div class="swiper-wrapper">
+           <div class="swiper-slide flex justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm">
+             <img alt="Dr. Zachary Brown, a cardiologist, sitting at a desk with a stethoscope around his neck" class="rounded-t-lg w-full" src="/assets/Dr-Brown.png"/>
+             <div class="p-4">
+              <h2 class="text-xl font-bold">
+               Dr. Zachary Brown
+              </h2>
+              <p class="text-teal-500 mb-4">
+               CARDIOLOGIST
+              </p>
+              <p class="text-gray-600 mb-4">
+                Dr. Zachary Brown is an experienced cardiologist who provides comprehensive care for heart-related conditions. He is passionate about helping patients maintain a healthy heart and improving their overall cardiovascular health.
+              </p>
+              <div class="flex space-x-4 text-teal-500">
+               <a href="#">
+                <i class="fab fa-facebook-f">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-twitter">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-instagram">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-youtube">
+                </i>
+               </a>
+              </div>
+             </div>
+            </div>
+           </div>
+           <div class="swiper-slide flex justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm">
+             <img alt="Dr. Isabella Davies, a gynecologist, holding a stethoscope" class="rounded-t-lg w-full" src="/assets/Dr-Davies.png"/>
+             <div class="p-4">
+              <h2 class="text-xl font-bold">
+               Dr. Isabella Davies
+              </h2>
+              <p class="text-teal-500 mb-4">
+               GYNECOLOGIST
+              </p>
+              <p class="text-gray-600 mb-4">
+                Dr. Isabella Davies is a highly regarded gynecologist specializing in women’s reproductive health. She is committed to delivering compassionate care and empowering women to take charge of their health and well-being.
+              </p>
+              <div class="flex space-x-4 text-teal-500">
+               <a href="#">
+                <i class="fab fa-facebook-f">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-twitter">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-instagram">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-youtube">
+                </i>
+               </a>
+              </div>
+             </div>
+            </div>
+           </div>
+           <div class="swiper-slide flex justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm">
+             <img alt="Dr. Michael Smith, a neurologist, holding a brain model" class="rounded-t-lg w-full" src="/assets/Dr-Smith.png"/>
+             <div class="p-4">
+              <h2 class="text-xl font-bold">
+               Dr. Michael Smith
+              </h2>
+              <p class="text-teal-500 mb-4">
+               NEUROLOGIST
+              </p>
+              <p class="text-gray-600 mb-4">
+                Dr. Michael Smith is a dedicated neurologist with extensive experience in diagnosing and treating disorders of the brain and nervous system. He is committed to providing personalized care to help patients achieve optimal health.
+              </p>
+              <div class="flex space-x-4 text-teal-500">
+               <a href="#">
+                <i class="fab fa-facebook-f">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-twitter">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-instagram">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-youtube">
+                </i>
+               </a>
+              </div>
+             </div>
+            </div>
+           </div>
+           <div class="swiper-slide flex justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm">
+             <img alt="Dr. Emily Johnson, a pediatrician, holding a teddy bear" class="rounded-t-lg w-full" src="/assets/Dr-Johnson.png"/>
+             <div class="p-4">
+              <h2 class="text-xl font-bold">
+               Dr. Emily Johnson
+              </h2>
+              <p class="text-teal-500 mb-4">
+               PEDIATRICIAN
+              </p>
+              <p class="text-gray-600 mb-4">
+                Dr. Emily Johnson is a compassionate pediatrician specializing in the care of infants, children, and adolescents. She is dedicated to creating a welcoming environment and ensuring the health and well-being of every child she treats.
+              </p>
+              <div class="flex space-x-4 text-teal-500">
+               <a href="#">
+                <i class="fab fa-facebook-f">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-twitter">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-instagram">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-youtube">
+                </i>
+               </a>
+              </div>
+             </div>
+            </div>
+           </div>
+           <div class="swiper-slide flex justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm">
+             <img alt="Dr. William Brown, an orthopedic surgeon, holding a bone model" class="rounded-t-lg w-full" src="/assets/Dr-William.png"/>
+             <div class="p-4">
+              <h2 class="text-xl font-bold">
+               Dr. William Brown
+              </h2>
+              <p class="text-teal-500 mb-4">
+               ORTHOPEDIC SURGEON
+              </p>
+              <p class="text-gray-600 mb-4">
+                Dr. William Brown is a skilled orthopedic surgeon with expertise in treating musculoskeletal conditions. He focuses on delivering tailored treatment plans to restore mobility and enhance his patients' quality of life.
+              </p>
+              <div class="flex space-x-4 text-teal-500">
+               <a href="#">
+                <i class="fab fa-facebook-f">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-twitter">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-instagram">
+                </i>
+               </a>
+               <a href="#">
+                <i class="fab fa-youtube">
+                </i>
+               </a>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+          <div class="swiper-button-next">
+          </div>
+          <div class="swiper-button-prev">
+          </div>
+         </div>
+        </div>
+    </section>
+
+    <!-- faq -->
+    
+    <section id="faqs" class="bg-white text-gray-800">
+        <div class="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-8">We’ve Got Answers</h2>
+            <div class="space-y-4">
+                <div class="border-b">
+                    <button class="w-full text-left flex justify-between items-center py-4 text-lg font-semibold" onclick="toggleAnswer(0)">
+                        Why To Believe With OreganKnow Medical Healthcare ?
+                        <span class="text-2xl" id="icon-0">-</span>
+                    </button>
+                    <div class="pb-4 transition-height" id="answer-0" style="max-height: 1000px;">
+                        <p class="text-gray-600">
+                            OreganKnow Medical Healthcare is dedicated to providing high-quality, compassionate care. Our experienced team of healthcare professionals uses advanced technology and personalized treatment plans to ensure the best outcomes for our patients.
+                        </p>
+                    </div>
+                </div>
+                <div class="border-b">
+                    <button class="w-full text-left flex justify-between items-center py-4 text-lg font-semibold" onclick="toggleAnswer(1)">
+                        Will We Get Healthcare Updates After Surgery ?
+                        <span class="text-2xl" id="icon-1">+</span>
+                    </button>
+                    <div class="pb-4 hidden transition-height" id="answer-1" style="max-height: 0;">
+                        <p class="text-gray-600">
+                            Yes, our team provides continuous updates and follow-up care after surgery. We will keep you informed about your recovery progress, answer any questions, and provide necessary instructions for a smooth healing process.
+                        </p>
+                    </div>
+                </div>
+                <div class="border-b">
+                    <button class="w-full text-left flex justify-between items-center py-4 text-lg font-semibold" onclick="toggleAnswer(2)">
+                        What Is The Cost For Just Check-Up ?
+                        <span class="text-2xl" id="icon-2">+</span>
+                    </button>
+                    <div class="pb-4 hidden transition-height" id="answer-2" style="max-height: 0;">
+                        <p class="text-gray-600">
+                            The cost of a check-up may vary depending on the type of consultation and any additional tests needed. Please contact our office or chatbot for a detailed breakdown of the costs associated with a routine check-up.
+                        </p>
+                    </div>
+                </div>
+                <div class="border-b">
+                    <button class="w-full text-left flex justify-between items-center py-4 text-lg font-semibold" onclick="toggleAnswer(3)">
+                        Can I Cancel My Appointment ?
+                        <span class="text-2xl" id="icon-3">+</span>
+                    </button>
+                    <div class="pb-4 hidden transition-height" id="answer-3" style="max-height: 0;">
+                        <p class="text-gray-600">
+                            Yes, you can cancel your appointment. Please notify us as soon as possible, ideally 24 hours in advance, so we can reschedule your appointment and accommodate other patients.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Departments -->
+
+    <section id="department" class="bg-gray-100 flex items-center justify-center min-h-[80vh] mb-8">
+        <div class="bg-[#e8f3f7] rounded-lg shadow-lg p-8 max-w-7xl mx-auto flex flex-col md:flex-row relative">
+         <div class="md:w-1/3 mb-8 md:mb-0">
+          <ul class="space-y-4 text-[#a0b3b9]" id="departments">
+           <li class="font-semibold cursor-pointer" data-department="LABORATORY ANALYSIS">
+            LABORATORY ANALYSIS
+           </li>
+           <li class="cursor-pointer" data-department="CARDIOLOGY CLINIC">
+            CARDIOLOGY CLINIC
+           </li>
+           <li class="cursor-pointer" data-department="GYNECOLOGY CLINIC">
+            GYNECOLOGY CLINIC
+           </li>
+           <li class="cursor-pointer" data-department="PATHOLOGY CLINIC">
+            PATHOLOGY CLINIC
+           </li>
+           <li class="cursor-pointer" data-department="PEDIATRICS CLINIC">
+            PEDIATRICS CLINIC
+           </li>
+           <li class="cursor-pointer" data-department="NEUROLOGY CLINIC">
+            NEUROLOGY CLINIC
+           </li>
+          </ul>
+         </div>
+         <div class="md:w-2/3 relative">
+          <div id="content">
+           <h2 class="text-3xl font-bold text-gray-700 mb-4" id="department-title">
+            Laboratory Analysis
+           </h2>
+           <div id="description-container">
+            <p class="text-gray-500 mb-4" id="department-description">
+                Laboratory analysis involves testing body fluids, tissues, or excretions to detect the presence, absence, or concentration of various substances. These tests are critical for accurate diagnoses and treatment planning.
+            </p>
+            <p class="text-gray-500 mb-4">
+             Sampling is the process of collecting a portion of an environmental medium as representative of the locally remaining medium. The collected portion of the medium is then analyzed to determine the radionuclide concentration.
+            </p>
+           </div>
+           <div class="flex space-x-4 mb-4">
+            <a class="text-teal-500" href="#">
+             Neurocritical Care
+            </a>
+            <a class="text-teal-500" href="#">
+             Neuro Oncology
+            </a>
+            <a class="text-teal-500" href="#">
+             Geriatric Neurology
+            </a>
+           </div>
+           <button class="bg-teal-500 text-white px-6 py-2 rounded-full">
+            Learn More
+           </button>
+           <img alt="Decorative image of a hand holding a heart" class="absolute right-0 bottom-0 opacity-10 w-1/2 h-1/2 md:w-1/3 md:h-1/3" src="https://placehold.co/300x300"/>
+          </div>
+         </div>
+        </div>
+    </section>
+
+    <!-- Blogs -->
+    <section id="blogs" class="bg-white text-gray-800">
+        <div class="container mx-auto px-4 py-8">
+            <h1 class="text-4xl font-bold text-left mb-8">
+                Our Recent Posts
+            </h1>
+            <!-- Grid with adjusted card width -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- First Card -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 hover-zoom">
+                    <img alt="Medical - Hands forming a heart shape" class="w-full h-48 object-cover" src="/assets/food.png"/>
+                    <div class="p-4">
+                        <span class="inline-block bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full uppercase font-semibold tracking-wide">
+                            Medical
+                        </span>
+                        <p class="text-gray-600 text-sm mt-2">
+                            Jan 2, 2023
+                        </p>
+                        <h2 class="text-lg font-bold mt-2">
+                            10 Foods To Avoid For Your Heart Health
+                        </h2>
+                        <p class="text-gray-600 mt-2">
+                            It’s normal to feel anxiety, worry and grief any time you’re diagnosed with a condition that’s certainly true...
+                            <a class="text-teal-500" href="#">
+                                Read more
+                            </a>
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- Second Card -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 hover-zoom">
+                    <img alt="Mental Health - Family on the beach" class="w-full h-48 object-cover" src="/assets/relax.png"/>
+                    <div class="p-4">
+                        <span class="inline-block bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full uppercase font-semibold tracking-wide">
+                            Mental Health
+                        </span>
+                        <p class="text-gray-600 text-sm mt-2">
+                            Jan 3, 2023
+                        </p>
+                        <h2 class="text-lg font-bold mt-2">
+                            How To Be Relax & Calm In Hard Situations
+                        </h2>
+                        <p class="text-gray-600 mt-2">
+                            It’s normal to feel anxiety, worry and grief any time you’re diagnosed with a condition that’s certainly true...
+                            <a class="text-teal-500" href="#">
+                                Read more
+                            </a>
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- Third Card -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 hover-zoom">
+                    <img alt="Dental Health - Dentist working on a patient" class="w-full h-48 object-cover" src="/assets/teeth.png"/>
+                    <div class="p-4">
+                        <span class="inline-block bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full uppercase font-semibold tracking-wide">
+                            Dental Health
+                        </span>
+                        <p class="text-gray-600 text-sm mt-2">
+                            Jan 4, 2023
+                        </p>
+                        <h2 class="text-lg font-bold mt-2">
+                            Best Ways To Make Your Teeth Strong
+                        </h2>
+                        <p class="text-gray-600 mt-2">
+                            It’s normal to feel anxiety, worry and grief any time you’re diagnosed with a condition that’s certainly true...
+                            <a class="text-teal-500" href="#">
+                                Read more
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Read More Blogs button -->
+            <div class="text-left mt-8">
+                <a class="inline-block bg-teal-500 text-white text-lg px-6 py-3 rounded-full" href="#">
+                    READ MORE BLOGS
+                </a>
+            </div>
+    
+            <!-- Footer Section with Brand Names -->
+            <div class="flex justify-center items-center mt-12 space-x-16">
+                <span class="text-teal-500 text-2xl hover:text-teal-700 transition-colors duration-300 cursor-pointer">
+                    BETEAL
+                </span>
+                <span class="text-teal-500 text-2xl hover:text-teal-700 transition-colors duration-300 cursor-pointer">
+                    Healer.
+                </span>
+                <span class="text-teal-500 text-4xl hover:text-teal-700 transition-colors duration-300 cursor-pointer">
+                    Lifetrace
+                </span>
+                <span class="text-teal-500 text-2xl hover:text-teal-700 transition-colors duration-300 cursor-pointer">
+                    medcare
+                </span>
+                <span class="text-teal-500 text-2xl hover:text-teal-700 transition-colors duration-300 cursor-pointer">
+                    SOVEN
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Letter and Footer -->
+
+    <section class="bg-white text-gray-800">
+        <div class="bg-teal-500 py-16">
+         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center md:space-x-8">
+          <div class="text-left text-white md:w-1/2">
+           <p class="text-lg">
+            OUR NEWSLETTER
+           </p>
+           <h1 class="text-4xl font-bold mt-2">
+            Subscribe To Get More Updates
+           </h1>
+          </div>
+          <form id="subscribe-form" method="POST" class="mt-8 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
+            <input id="email" class="px-4 py-2 rounded-l-full focus:outline-none bg-transparent text-white placeholder-white border border-white" 
+                   placeholder="Your Email Address" 
+                   type="email" 
+                   name="email" 
+                   required />
+            <button class="bg-white text-teal-500 px-6 py-2 rounded-r-full font-semibold" type="submit">
+                SUBSCRIBE
+            </button>
+        </form>
+         </div>
+        </div>
+        <footer class="bg-white py-12">
+         <div class="container mx-auto px-4">
+          <div class="flex flex-wrap justify-between">
+           <div class="w-full md:w-1/3 mb-8 md:mb-0">
+            <div class="flex items-center mb-4">
+             <img alt="Company Logo" class="mr-3" src="/assets/logo-landing.png"/>
+             <div>
+              <h2 class="text-2xl font-bold">
+               OreganKnow
+              </h2>
+              <p class="text-sm text-gray-500">
+               Medical Healthcare
+              </p>
+             </div>
+            </div>
+            <p class="text-gray-600 mb-4 pr-10">
+                Managing your health has never been easier with our comprehensive medical healthcare appointment system. 
+            </p>
+            <p class="text-gray-600 flex items-center mb-2">
+             <i class="fas fa-map-marker-alt text-teal-500 mr-2">
+             </i>
+             Brgy. Baybay Roxas City, Capiz 5800
+            </p>
+            <p class="text-gray-600 flex items-center mb-2">
+             <i class="fas fa-envelope text-teal-500 mr-2">
+             </i>
+             Info@yourinfo.com
+            </p>
+            <p class="text-gray-600 flex items-center mb-2">
+             <i class="fas fa-phone-alt text-teal-500 mr-2">
+             </i>
+             (+487) 384 9452
+            </p>
+            <div class="flex space-x-4 mt-4">
+             <a class="text-teal-500" href="#">
+              <i class="fab fa-facebook-f">
+              </i>
+             </a>
+             <a class="text-teal-500" href="#">
+              <i class="fab fa-twitter">
+              </i>
+             </a>
+             <a class="text-teal-500" href="#">
+              <i class="fab fa-instagram">
+              </i>
+             </a>
+             <a class="text-teal-500" href="#">
+              <i class="fab fa-youtube">
+              </i>
+             </a>
+             <a class="text-teal-500" href="#">
+              <i class="fab fa-linkedin-in">
+              </i>
+             </a>
+            </div>
+           </div>
+           <div class="w-full md:w-1/3 mb-8 md:mb-0">
+            <h3 class="text-xl font-semibold mb-4">
+             Quick Links
+            </h3>
+            <ul class="text-gray-600 space-y-2">
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               Home
+              </a>
+             </li>
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               About
+              </a>
+             </li>
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               Services
+              </a>
+             </li>
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               Booking
+              </a>
+             </li>
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               Testimonial
+              </a>
+             </li>
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               Our Team
+              </a>
+             </li>
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               Faqs
+              </a>
+             </li>
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               Department
+              </a>
+             </li>
+             <li>
+              <a class="hover:text-teal-500" href="#">
+               Blog
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="w-full md:w-1/3">
+            <h3 class="text-xl font-semibold mb-4">
+             Opening Hours
+            </h3>
+            <ul class="text-gray-600 space-y-2">
+             <li class="flex justify-between">
+              <span>
+               Monday - Thursday
+              </span>
+              <span class="text-teal-500">
+               8:00 am - 6:00 pm
+              </span>
+             </li>
+             <li class="flex justify-between">
+              <span>
+               Friday - Saturday
+              </span>
+              <span class="text-teal-500">
+               10:00 am - 4:00 pm
+              </span>
+             </li>
+             <li class="flex justify-between">
+              <span>
+               Sunday
+              </span>
+              <span class="text-teal-500">
+               Emergency only
+              </span>
+             </li>
+             <li class="flex justify-between">
+              <span>
+               Personal
+              </span>
+              <span class="text-teal-500">
+               7:00 pm - 9:00 pm
+              </span>
+             </li>
+            </ul>
+           </div>
+          </div>
+          <hr class="my-8 border-gray-300"/>
+          <div class="mt-12 text-center text-gray-600">
+           <p>
+            2025 OreganKnow - All rights reserved
+           </p>
+           <p>
+            Made by:
+            <a class="text-teal-500" href="#">
+             Inpurmaysion Studins 
+            </a>
+           </p>
+          </div>
+         </div>
+        </footer>
+    </section>
+
+
+    <!-- chatbot widget v2 -->
+
+    <section class="bg-gray-100">
+        <div class="flex flex-col items-center">
+            <!-- Chatbot Widget -->
+            <div class="fixed bottom-4 right-4">
+                <button id="chatbotButton" class="bg-teal-500 text-white p-4 rounded-full shadow-lg">
+                    <i class="fas fa-comment-dots"></i>
+                </button>
+            </div>
+    
+            <!-- Chat Popup -->
+            <div id="chatPopup" class="chat-popup fixed bottom-16 right-4 w-80 bg-white rounded-lg shadow-lg max-h-96 overflow-y-auto">
+                <!-- Header Section -->
+                <div class="w-full bg-teal-500 text-white p-4 text-center rounded-t-lg">
+                    <img alt="Company Logo" class="mx-auto mb-2" height="30" src="/assets/logo-landing.png" width="30"/>
+                    <h1 class="text-lg font-semibold">Hello there.</h1>
+                    <h2 class="text-md">How can we help?</h2>
+                </div>
+                <!-- Main Content Section -->
+                <div class="w-full p-4">
+                    <div id="askQuestionButton" class="bg-white rounded-lg shadow-md p-2 mb-4 flex items-center justify-between cursor-pointer">
+                        <span>Ask a question</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div id="faqDropdown" class="faq-dropdown bg-white rounded-lg shadow-md p-2 mb-4" style="user-select: text;">
+                        <ul class="mb-2">
+                            <li class="mb-1">What is OregaKnow?</li>
+                            <li class="mb-1">How does OregaKnow work?</li>
+                            <li class="mb-1">What are the benefits of using OregaKnow?</li>
+                        </ul>
+                        <form id="question-form" action="/submit-question" method="POST">
+                            <textarea class="w-full p-2 border rounded-lg" 
+                                      placeholder="Type your question here..." 
+                                      name="question" 
+                                      required></textarea>
+                            <button type="submit" class="mt-2 bg-teal-500 text-white px-4 py-2 rounded-lg font-semibold">
+                                Submit Question
+                            </button>
+                        </form>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-2">
+                        <img alt="Fin 2 promotional image" class="rounded-lg mb-2" height="100" src="/assets/chatbot-img.png" width="200"/>
+                        <h3 class="text-lg font-bold">OregaKnow</h3>
+                        <p class="text-sm">The first AI agent that delivers human-quality service</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Bar -->
+                <div class="w-full bg-white border-t border-gray-200 rounded-b-lg">
+                    <div class="flex justify-around py-2">
+                        <div class="flex flex-col items-center">
+                            <i class="fas fa-home text-black"></i>
+                            <span class="text-xs">Home</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <i class="fas fa-envelope text-gray-500"></i>
+                            <span class="text-xs text-gray-500">Messages</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <i class="fas fa-question-circle text-gray-500"></i>
+                            <span class="text-xs text-gray-500">Help</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <i class="fas fa-bell text-gray-500"></i>
+                            <span class="text-xs text-gray-500">News</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <i class="fas fa-comment-dots text-black"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPTS -->
+    <!-- Burger Menu -->
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+           var mobileMenu = document.getElementById('mobile-menu');
+           if (mobileMenu.classList.contains('hidden')) {
+             mobileMenu.classList.remove('hidden');
+           } else {
+             mobileMenu.classList.add('hidden');
+           }
+         });
+       </script>
+    
+    <!-- FlatPickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#date-picker", {
+            dateFormat: "d/m/Y",
+        });
+        flatpickr("#time-picker", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: false
+        });
+    </script>
+
+    <!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    // Reviews Swiper
+    var reviewsSwiper = new Swiper('.reviews-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+
+    // Our Team Swiper
+    var teamSwiper = new Swiper('.team-swiper', {
+      slidesPerView: 3,
+      spaceBetween: 5,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 5,
+        },
+        768: {
+          slidesPerView: 1,
+          spaceBetween: 5,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 5,
+        },
+      }
+    });
+
+  </script>
+</script>
+
+    <!-- faq -->
+    <script>
+        function toggleAnswer(index) {
+            const answers = document.querySelectorAll('[id^="answer-"]');
+            const icons = document.querySelectorAll('[id^="icon-"]');
+            
+            answers.forEach((answer, i) => {
+                if (i === index) {
+                    if (answer.classList.contains('hidden')) {
+                        answer.classList.remove('hidden');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        icons[i].textContent = '-';
+                    } else {
+                        answer.style.maxHeight = '0';
+                        setTimeout(() => {
+                            answer.classList.add('hidden');
+                        }, 300);
+                        icons[i].textContent = '+';
+                    }
+                } else {
+                    answer.style.maxHeight = '0';
+                    answer.classList.add('hidden');
+                    icons[i].textContent = '+';
+                }
+            });
+        }
+    </script>
+
+    <!-- departments selector script -->
+    <script>
+        const departments = {
+                 "LABORATORY ANALYSIS": {
+                     title: "Laboratory Analysis",
+                     description: "Laboratory analysis means a test performed by a laboratory on body fluid, tissue, or excretion for the purpose of determining the presence, absence, or concentration of various substances in the human body."
+                 },
+                 "CARDIOLOGY CLINIC": {
+                     title: "Cardiology Clinic",
+                     description: "The cardiology clinic specializes in diagnosing and treating heart-related conditions. Our advanced diagnostic tools and personalized care aim to improve cardiovascular health and overall well-being."
+                 },
+                 "GYNECOLOGY CLINIC": {
+                     title: "Gynecology Clinic",
+                     description: "Gynecology clinic offers a range of services for women's health, including reproductive health, pregnancy care, and menopause management."
+                 },
+                 "PATHOLOGY CLINIC": {
+                     title: "Pathology Clinic",
+                     description: "Pathology clinic specializes in the study and diagnosis of diseases through the examination of organs, tissues, and bodily fluids."
+                 },
+                 "PEDIATRICS CLINIC": {
+                     title: "Pediatrics Clinic",
+                     description: "Pediatrics clinic provides medical care for infants, children, and adolescents, focusing on their growth, development, and overall health."
+                 },
+                 "NEUROLOGY CLINIC": {
+                     title: "Neurology Clinic",
+                     description: "Neurology clinic focuses on the diagnosis and treatment of disorders of the nervous system, including the brain, spinal cord, and nerves."
+                 }
+             };
+     
+             document.querySelectorAll('#departments li').forEach(item => {
+                 item.addEventListener('click', event => {
+                     const department = event.target.getAttribute('data-department');
+                     const title = document.getElementById('department-title');
+                     const description = document.getElementById('department-description');
+     
+                     document.querySelectorAll('#departments li').forEach(li => li.classList.remove('font-semibold', 'text-gray-700'));
+                     event.target.classList.add('font-semibold', 'text-gray-700');
+     
+                     title.textContent = departments[department].title;
+                     description.textContent = departments[department].description;
+                 });
+             });
+       </script>
+
+    <!-- chatbot widget script v2 -->
+    <script>
+        const chatbotButton = document.getElementById('chatbotButton');
+        const chatPopup = document.getElementById('chatPopup');
+        const askQuestionButton = document.getElementById('askQuestionButton');
+        const faqDropdown = document.getElementById('faqDropdown');
+
+        chatbotButton.addEventListener('click', () => {
+            chatPopup.classList.toggle('chat-popup');
+        });
+
+        askQuestionButton.addEventListener('click', () => {
+            faqDropdown.classList.toggle('faq-dropdown');
+        });
+    </script>
+    
+    
+
+    <!-- Appointment Popup -->
+
+    <script>
+        document.getElementById('bookButton').addEventListener('click', function() {
+    document.getElementById('popup').classList.remove('hidden');
+});
+
+document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('popup').classList.add('hidden');
+});
+
+// Optional: Close the popup when clicking outside of it
+window.onclick = function(event) {
+    const popup = document.getElementById('popup');
+    if (event.target === popup) {
+        popup.classList.add('hidden');
+    }
+}
+    </script>
+
+    <script>
+document
+              .getElementById("subscribe-form")
+              .addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                const email = document.getElementById("email").value;
+
+                try {
+                  const response = await fetch("https://cors-anywhere.herokuapp.com/https://hooks.zapier.com/hooks/catch/21391645/2kew5qc/",
+                    {
+                      method: "POST",
+                      headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ email }),
+                    }
+                  );
+
+                  if (response.ok) {
+                    alert("Feedback submitted successfully!");
+                    document.getElementById("subscribe-form").reset();
+                  } else {
+                    alert("Failed to submit. Please try again.");
+                  }
+                } catch (error) {
+                  alert("An error occurred: " + error.message);
+                }
+              });
+    </script>
+    
+</body>
+</html>

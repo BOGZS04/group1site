@@ -1,1 +1,127 @@
 @import 'tailwindcss';
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    }
+
+    .sticky-nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+    }
+
+    .testimonial-container {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .swiper-slide {
+            flex-direction: row;
+        }
+    }
+
+    .swiper-container {
+        position: relative;
+        user-select: none;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        color: teal;
+        padding: 10px;
+    }
+
+    .swiper-button-next {
+        right: 10px;
+    }
+
+    .swiper-button-prev {
+        left: 10px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .transition-height {
+        transition: max-height 0.3s ease;
+        overflow: hidden;
+    }
+
+    #blogs {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .hover-zoom:hover {
+        transform: scale(1.05);
+    }
+
+    .chatbot-widget {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        background-color: #14B8A6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+    }
+
+    .modal.active {
+        display: flex;
+    }
+
+    .chat-popup {
+        display: none;
+    }
+
+    .faq-dropdown {
+        display: none;
+    }
+
+    .show {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+

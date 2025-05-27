@@ -4,14 +4,60 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import Genders, Users
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
+
+def landing_page(request):
+    return render(request, 'landing/landing.html')
+
+# Custom login required decorator
+def custom_login_required(view_func):
+    def wrapper(request, *args, **kwargs):
+        if not request.session.get('is_authenticated'):
+            messages.error(request, 'Please log in to access this page.')
+            return redirect('/login/')
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
+def login_view(request):
+    try:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            
+            try:
+                user = Users.objects.get(username=username)
+                if check_password(password, user.password):
+                    # Set session data
+                    request.session['user_id'] = user.user_id
+                    request.session['username'] = user.username
+                    request.session['is_authenticated'] = True  # Add this flag
+                    messages.success(request, f'Welcome Master {user.full_name}!')
+                    return redirect('/gender/list')
+                else:
+                    messages.error(request, 'Invalid username or password.')
+                    return render(request, 'user/login.html')
+            except Users.DoesNotExist:
+                messages.error(request, 'Invalid username or password.')
+                return render(request, 'user/login.html')
+        else:
+            # If user is already logged in, redirect to gender list
+            if request.session.get('is_authenticated'):
+                return redirect('/gender/list')
+            return render(request, 'user/login.html')
+    except Exception as e:
+        messages.error(request, f'An error occurred: {str(e)}')
+        return render(request, 'user/login.html')
+
+def logout_view(request):
+    request.session.flush()  # This will clear all session data
+    return redirect('/login/')
 
 @login_required
 def gender_list(request):
